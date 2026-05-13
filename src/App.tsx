@@ -42,20 +42,40 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void; key?: string }) 
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-white"
     >
-      <motion.h1
+      <motion.div
         translate="no"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className="notranslate text-5xl md:text-7xl font-sans font-bold tracking-[0.4em] text-slate-900 uppercase"
+        className="notranslate text-6xl md:text-8xl font-sans font-bold tracking-[0.4em] text-slate-900 uppercase flex items-center"
       >
-        VIBB
-      </motion.h1>
+        <span>V</span>
+        <span className="relative">
+          I
+          <span className="absolute -top-[0.25em] left-1/2 -translate-x-1/2 flex justify-center gap-[0.1em] min-w-max">
+            <motion.span 
+              animate={{ scaleY: [1, 1, 0.1, 1, 1] }}
+              transition={{ duration: 4, repeat: Infinity, times: [0, 0.45, 0.5, 0.55, 1] }}
+              className="w-[0.18em] h-[0.18em] bg-slate-900 rounded-full relative origin-center"
+            >
+              <span className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white rounded-full opacity-90" />
+            </motion.span>
+            <motion.span 
+              animate={{ scaleY: [1, 1, 0.1, 1, 1] }}
+              transition={{ duration: 4, repeat: Infinity, times: [0, 0.45, 0.5, 0.55, 1], delay: 0.1 }}
+              className="w-[0.18em] h-[0.18em] bg-slate-900 rounded-full relative origin-center"
+            >
+              <span className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white rounded-full opacity-90" />
+            </motion.span>
+          </span>
+        </span>
+        <span>BB</span>
+      </motion.div>
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1.5 }}
-        className="mt-6 text-sm md:text-base font-sans font-light tracking-[0.3em] text-slate-500 uppercase text-center px-4"
+        className="mt-6 text-base md:text-lg font-sans font-light tracking-[0.3em] text-slate-500 uppercase text-center px-4"
       >
         Magic glass Solutions
       </motion.p>
@@ -73,7 +93,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navItems = [
     { label: "Inicio", href: "#inicio" },
-    { label: "Ventajas", href: "#smart-pdlc" },
+    { label: "Soluciones", href: "#smart-pdlc" },
     { label: "Constructoras", href: "#constructoras" },
     { label: "Tecnología", href: "#tecnología" },
     { label: "Aplicaciones", href: "#aplicaciones" },
@@ -81,9 +101,23 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-40 bg-slate-50 border-b border-slate-200 shadow-sm">
+    <nav className="fixed top-10 left-0 w-full z-40 bg-slate-50 border-b border-slate-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <div translate="no" className="notranslate text-lg font-sans tracking-[0.3em] uppercase font-bold text-indigo-950">VIBB</div>
+        <div translate="no" className="notranslate text-2xl font-sans tracking-[0.3em] uppercase font-bold text-indigo-950 flex items-center">
+          <span>V</span>
+          <span className="relative">
+            I
+            <span className="absolute -top-[0.22em] left-1/2 -translate-x-1/2 flex justify-center gap-[0.1em] min-w-max">
+              <span className="w-[0.18em] h-[0.18em] bg-indigo-950 rounded-full relative">
+                <span className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white rounded-full opacity-90" />
+              </span>
+              <span className="w-[0.18em] h-[0.18em] bg-indigo-950 rounded-full relative">
+                <span className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white rounded-full opacity-90" />
+              </span>
+            </span>
+          </span>
+          <span>BB</span>
+        </div>
         
         {/* Desktop Links */}
         <div className="hidden md:flex items-center space-x-8">
@@ -91,7 +125,7 @@ const Navbar = () => {
               <a 
                 key={item.label} 
                 href={item.href}
-                className="text-[10px] uppercase tracking-widest font-bold text-slate-600 hover:text-indigo-900 transition-colors relative group"
+                className="text-[12px] uppercase tracking-widest font-bold text-slate-600 hover:text-indigo-900 transition-colors relative group"
               >
                 {item.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-900 transition-all group-hover:w-full" />
@@ -120,7 +154,7 @@ const Navbar = () => {
                    key={item.label} 
                    href={item.href}
                    onClick={() => setIsOpen(false)}
-                   className="text-[11px] uppercase tracking-widest font-bold text-slate-600 hover:text-indigo-900"
+                   className="text-[13px] uppercase tracking-widest font-bold text-slate-600 hover:text-indigo-900"
                 >
                   {item.label}
                 </a>
@@ -248,58 +282,64 @@ export default function App() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1.5 }}
           >
-            <Navbar />
-            
-            <div className="sticky top-20 left-0 w-full z-30 bg-indigo-950 text-white py-2 border-b border-white/10 shadow-sm">
-              <div className="max-w-7xl mx-auto px-6 flex items-center space-x-4">
-                <div className="flex items-center space-x-2 bg-white/10 pr-3 pl-1 py-1 rounded-full backdrop-blur-sm border border-white/10">
+            {/* 1. Stripe as the very top bar */}
+            <div className="fixed top-0 left-0 w-full bg-indigo-950 text-white h-10 flex items-center border-b border-white/10 shadow-sm z-50">
+              <div className="max-w-7xl mx-auto px-6 w-full flex items-center justify-between">
+                <motion.div 
+                  key={activeSection}
+                  initial={{ opacity: 0, x: -5 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="text-[11px] md:text-[12px] tracking-[0.1em] font-medium text-white/90 whitespace-nowrap"
+                >
+                  <span className="opacity-80">
+                    {activeSection === "constructoras" 
+                      ? "innovación en la arquitectura con vidrio inteligente" 
+                      : `distribuidora de vidrios inteligentes Bio Bio ${activeSection === "smart-pdlc" ? " | ventajas y soluciones" : ""}`}
+                  </span>
+                </motion.div>
+
+                <div className="flex items-center space-x-2 bg-white/10 pr-4 pl-1 py-1 rounded-full backdrop-blur-sm border border-white/10">
                   <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center shadow-sm overflow-hidden">
                     <img src="/arbol.jpg" alt="Zero Emission" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                   </div>
                   <span className="text-[8px] font-bold uppercase tracking-widest text-white whitespace-nowrap">Cero Emisión</span>
                 </div>
-                  <motion.span 
-                    key={activeSection}
-                    initial={{ opacity: 0, x: -5 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold text-white/80 whitespace-nowrap border-l border-white/20 pl-4"
-                  >
-                    {activeSection === "constructoras" 
-                      ? "INNOVACION EN LA ARQUITECTURA CON VIDRIO INTELIGENTE" 
-                      : `VIBB, Distribuidora de Vidrios Inteligente BIO BIO ${activeSection === "smart-pdlc" ? " | VENTAJAS Y SOLUCIONES" : ""}`}
-                  </motion.span>
               </div>
             </div>
 
+            <Navbar />
+            
             <main className="mt-0">
               {/* Hero Section */}
-              <section id="inicio" className="relative min-h-[calc(100vh-140px)] flex items-start lg:items-center bg-white text-slate-900 overflow-hidden pt-28 pb-12 lg:pt-36 lg:pb-24">
-                {/* Abstract Background Elements inspired by user banner */}
-                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
-                  <div className="absolute top-[-20%] right-[-10%] w-[70%] h-[100%] bg-gradient-to-br from-sky-400/30 via-indigo-400/20 to-transparent blur-[120px] rounded-full rotate-12" />
-                  <div className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[80%] bg-gradient-to-tr from-blue-400/20 via-indigo-300/10 to-transparent blur-[100px] rounded-full -rotate-12" />
-                  <div className="absolute top-[20%] left-[10%] w-[30%] h-[40%] bg-indigo-200/10 blur-[80px] rounded-full opacity-50" />
-                  
-                  {/* Decorative Diagonal Light Streak */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: -100, y: -100 }}
-                    animate={{ opacity: 0.6, x: 0, y: 0 }}
-                    transition={{ duration: 1.5, ease: "easeOut" }}
-                    className="absolute inset-0"
-                  >
-                    <div className="absolute top-[-50%] left-[30%] w-[1px] h-[200%] bg-gradient-to-b from-transparent via-indigo-800/20 to-transparent rotate-[35deg] blur-[2px]" />
-                    <div className="absolute top-[-50%] left-[32%] w-[2px] h-[200%] bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent rotate-[35deg] blur-[4px]" />
-                  </motion.div>
-                </div>
+              <section id="inicio" className="relative min-h-screen flex flex-col bg-white text-slate-900 overflow-hidden pt-[120px]">
 
-                <div className="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-                  {/* Content Pillar */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2, duration: 0.8 }}
-                    className="z-10 order-2 lg:order-1 lg:col-span-5 text-left"
-                   >
+                {/* 2. Hero Content */}
+                <div className="flex-grow flex flex-col justify-center relative pt-20 pb-12 lg:pb-24">
+                  {/* Abstract Background Elements */}
+                  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40">
+                    <div className="absolute top-[-20%] right-[-10%] w-[70%] h-[100%] bg-gradient-to-br from-sky-400/30 via-indigo-400/20 to-transparent blur-[120px] rounded-full rotate-12" />
+                    <div className="absolute bottom-[-10%] left-[-10%] w-[60%] h-[80%] bg-gradient-to-tr from-blue-400/20 via-indigo-300/10 to-transparent blur-[100px] rounded-full -rotate-12" />
+                    <div className="absolute top-[20%] left-[10%] w-[30%] h-[40%] bg-indigo-200/10 blur-[80px] rounded-full opacity-50" />
+                    
+                    <motion.div 
+                      initial={{ opacity: 0, x: -100, y: -100 }}
+                      animate={{ opacity: 0.6, x: 0, y: 0 }}
+                      transition={{ duration: 1.5, ease: "easeOut" }}
+                      className="absolute inset-0"
+                    >
+                      <div className="absolute top-[-50%] left-[30%] w-[1px] h-[200%] bg-gradient-to-b from-transparent via-indigo-800/20 to-transparent rotate-[35deg] blur-[2px]" />
+                      <div className="absolute top-[-50%] left-[32%] w-[2px] h-[200%] bg-gradient-to-b from-transparent via-indigo-900/10 to-transparent rotate-[35deg] blur-[4px]" />
+                    </motion.div>
+                  </div>
+
+                  <div className="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+                    {/* Content Pillar */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2, duration: 0.8 }}
+                      className="z-10 order-2 lg:order-1 lg:col-span-5 text-left"
+                    >
 
                     
                     <motion.div
@@ -308,16 +348,30 @@ export default function App() {
                       transition={{ delay: 0.3 }}
                       className="mb-4"
                     >
-                      <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-indigo-800">VIBB | Magic Glass</span>
+                      <div className="flex items-center text-[11px] tracking-[0.4em] font-bold text-indigo-800">
+                        <span>V</span>
+                        <span className="relative">
+                          I
+                          <span className="absolute -top-[0.22em] left-1/2 -translate-x-1/2 flex justify-center gap-[0.1em] min-w-max">
+                            <span className="w-[0.18em] h-[0.18em] bg-indigo-800 rounded-full relative">
+                              <span className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white rounded-full opacity-90" />
+                            </span>
+                            <span className="w-[0.18em] h-[0.18em] bg-indigo-800 rounded-full relative">
+                              <span className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white rounded-full opacity-90" />
+                            </span>
+                          </span>
+                        </span>
+                        <span>BB | Magic Glass</span>
+                      </div>
                     </motion.div>
                     
-                    <h2 className="text-[20px] md:text-[24px] leading-tight font-sans font-bold text-slate-900 uppercase tracking-[0.1em] mb-6 max-w-xl">
-                      Ahorra energía y gana privacidad con vidrio inteligente al instante.
+                    <h2 className="text-[26px] md:text-[34px] leading-tight font-serif font-bold text-slate-900 mb-6 max-w-xl">
+                      Transparencia 100% y Privacidad 99%
                     </h2>
  
-                    <div className="space-y-6 text-slate-600 font-light text-[13px] md:text-[14px] leading-relaxed max-w-2xl mb-8">
+                    <div className="space-y-6 text-slate-600 font-light text-[14px] md:text-[15px] leading-relaxed max-w-2xl mb-8">
                       <p>
-                        La tecnología de Cristal Líquido Disperso en Polímero (PDLC) representa un avance significativo en la innovación del vidrio inteligente, ofreciendo un control dinámico sobre la transparencia. El PDLC está compuesto por gotas de cristal líquido suspendidas en una matriz polimérica, las cuales pueden cambiar entre estados transparentes y opacos al aplicar un voltaje eléctrico. Esta transición permite a los arquitectos gestionar la luz y la privacidad dentro de los edificios de manera efectiva. Una de las principales aplicaciones de la tecnología PDLC es en fachadas y ventanas. La capacidad de controlar la transparencia mejora el atractivo estético y la privacidad de la arquitectura moderna mientras promueve la eficiencia energética al reducir la necesidad de persianas o cortinas.
+                        La tecnología de Film Inteligente (PDLC) permite transformar cristales de opacos a transparentes mediante un impulso eléctrico. Al integrar gotas de cristal líquido en una matriz polimérica, ofrece un control dinámico de la privacidad y la luz sin necesidad de persianas. Su uso en fachadas y ventanas no solo eleva la estética arquitectónica, sino que optimiza la eficiencia energética, posicionándose como una solución clave para la arquitectura moderna y sostenible.
                       </p>
                     </div>
 
@@ -347,6 +401,14 @@ export default function App() {
                     className="relative order-1 lg:order-2 lg:col-span-7"
                   >
                     <div className="relative z-10 aspect-video rounded-sm overflow-hidden shadow-[0_40px_80px_-20px_rgba(0,0,0,0.15)]">
+                      {/* Diagonal Accent Strip */}
+                      <div 
+                        className="absolute top-6 left-[-45px] w-48 h-6 bg-emerald-500 z-20 -rotate-45 shadow-[0_0_15px_rgba(16,185,129,0.3)] flex items-center justify-center"
+                      >
+                        <span className="text-[7px] font-bold text-white uppercase tracking-[0.1em] whitespace-nowrap">
+                          Eficiencia Energética
+                        </span>
+                      </div>
                       <video 
                         autoPlay 
                         loop 
@@ -356,12 +418,36 @@ export default function App() {
                       >
                         <source src="/Clorox.mp4" type="video/mp4" />
                       </video>
+
+                      {/* State Indicators */}
+                      <div className="absolute bottom-4 right-4 z-20 pointer-events-none">
+                        <div className="relative">
+                          <motion.div 
+                            animate={{ opacity: [1, 1, 0, 0] }}
+                            transition={{ duration: 6, repeat: Infinity, times: [0, 0.48, 0.52, 1] }}
+                            className="flex items-center space-x-2 px-3 py-1.5 bg-emerald-500/20 backdrop-blur-md rounded-full border border-emerald-500/30"
+                          >
+                            <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full shadow-[0_0_8px_rgba(52,211,153,0.8)]" />
+                            <span className="text-[9px] font-bold text-white uppercase tracking-widest">Estado ON: Transparente</span>
+                          </motion.div>
+                          <motion.div 
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: [0, 0, 1, 1] }}
+                            transition={{ duration: 6, repeat: Infinity, times: [0, 0.48, 0.52, 1] }}
+                            className="absolute inset-0 flex items-center space-x-2 px-3 py-1.5 bg-slate-900/40 backdrop-blur-md rounded-full border border-white/10"
+                          >
+                            <div className="w-1.5 h-1.5 bg-slate-300 rounded-full" />
+                            <span className="text-[9px] font-bold text-white uppercase tracking-widest">Estado OFF: Opaco</span>
+                          </motion.div>
+                        </div>
+                      </div>
                       
                       <div className="absolute inset-0 bg-[#062c1e]/5 pointer-events-none" />
                     </div>
                   </motion.div>
                 </div>
-              </section>
+              </div>
+            </section>
 
               <section id="smart-pdlc" className="relative pt-32 pb-16 bg-white overflow-hidden border-t border-slate-50 min-h-[calc(100vh-80px)] flex items-center">
                 <div className="max-w-7xl mx-auto px-6 w-full">
@@ -369,12 +455,12 @@ export default function App() {
                     <motion.p 
                       initial={{ opacity: 0, y: 10 }}
                       whileInView={{ opacity: 1, y: 0 }}
-                      className="text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-800 mb-2"
+                      className="text-[11px] font-bold tracking-[0.3em] text-indigo-800 mb-3"
                     >
-                      TECNOLOGÍA SUPERIOR
+                      Tecnología Superior
                     </motion.p>
-                    <h2 className="text-xl md:text-2xl font-sans font-bold text-slate-900 uppercase tracking-[0.2em] leading-tight">
-                      Ventajas VIBB PDLC
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-900 leading-tight">
+                      Soluciones VIBB PDLC
                     </h2>
                   </div>
 
@@ -388,28 +474,34 @@ export default function App() {
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4">
                       {[
-                        { t: "Protección UV y Térmica", d: "Bloqueo del 99% UV y hasta 80% de rayos infrarrojos solares, protegiendo mobiliario y piel.", icon: Shield },
-                        { t: "Balance Energético", d: "Contribuye a edificios con balance positivo, reduciendo hasta el 30% del gasto en climatización (HVAC).", icon: Home },
+                        { t: "Privacidad y Transparencia", d: "En menos de un segundo, nuestro film cambia de un vidrio transparente a privacidad total.", icon: Zap },
+                        { t: "Protección UV y Térmica", d: <>Bloqueo del 99% <span className="text-purple-600 font-bold">UV</span> y hasta 80% de rayos infrarrojos solares, protegiendo mobiliario y piel.</>, icon: Shield },
+                        { t: "Balance Energético", d: <>Contribuye a edificios con balance positivo, reduciendo hasta el 30% del gasto en climatización (<span className="text-red-600 font-bold">térmica</span>).</>, icon: Home },
                         { t: "Seguridad y Salud", d: "Superficies asépticas que eliminan la necesidad de cortinas, reduciendo drásticamente los alérgenos.", icon: CheckCircle2 },
                         { t: "Silencio y Confort", d: "Aislamiento acústico superior que mejora la productividad y el bienestar visual en cualquier entorno.", icon: MessageCircle },
-                        { t: "Estado Transparente", d: "Alineación de dominios de cristal líquido de alta precisión para una transparencia pura y vibrante.", icon: Zap },
                         { t: "Multifuncionalidad", d: "Consumo mínimo de energía, funcionando como una potente pantalla de proyección HD en modo OFF.", icon: Eye },
+                        { t: "Resistencia a Golpes y trizaduras", d: "La energía producto del golpe se disipa en la capa interior del film aumentado su firmeza hasta 20%,", icon: Shield },
+                        { t: "Resistencia en trizaduras", d: "La contención de fragmentos que quedan adheridos al film, evita tras un golpe que los trozos de vidrio salgan proyectados, protegiendo a las personas.", icon: Shield },
                       ].map((item, i) => (
                         <motion.div 
                           key={i} 
-                          initial={{ opacity: 0, y: 15 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: i * 0.1 }}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true, margin: "-50px" }}
+                          transition={{ 
+                            duration: 1.0,
+                            delay: i * 0.6,
+                            ease: "easeOut"
+                          }}
                           className="group border-l-2 border-slate-100 pl-6 hover:border-indigo-600 transition-all duration-300"
                         >
                           <div className="space-y-1">
                             <h3 className="text-[14px] md:text-[15px] font-sans font-bold text-slate-800 uppercase tracking-widest group-hover:text-indigo-900 transition-colors">
                               {item.t}
                             </h3>
-                            <p className="text-[13px] md:text-[14px] text-slate-500 font-light leading-relaxed">
+                            <div className="text-[13px] md:text-[14px] text-slate-500 font-light leading-relaxed">
                               {item.d}
-                            </p>
+                            </div>
                           </div>
                         </motion.div>
                       ))}
@@ -437,7 +529,7 @@ export default function App() {
                         className="space-y-2"
                       >
                         <item.icon className="text-slate-400 mb-2" size={18} strokeWidth={1} />
-                        <h4 className="text-[13px] font-serif font-medium">{item.q}</h4>
+                        <h4 className="text-[13px] font-sans font-medium">{item.q}</h4>
                         <p className="text-[11px] text-slate-500 leading-tight font-light">{item.a}</p>
                       </motion.div>
                     ))}
@@ -449,7 +541,7 @@ export default function App() {
               <section id="aplicaciones" className="py-12">
                 <div className="max-w-7xl mx-auto px-6">
                   <div className="mb-10">
-                      <h2 className="text-xl md:text-2xl font-sans font-bold text-slate-800 uppercase tracking-[0.2em] mb-4">Aplicaciones del PDLC</h2>
+                      <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-800 mb-4">Aplicaciones del PDLC</h2>
                       <div className="h-[1px] w-20 bg-slate-900" />
                   </div>
 
@@ -510,11 +602,11 @@ export default function App() {
                         <motion.p 
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          className="text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-800"
+                          className="text-[11px] font-bold tracking-[0.3em] text-indigo-800"
                         >
-                          LIDERAZGO & INNOVACIÓN
+                          Liderazgo & Innovación
                         </motion.p>
-                        <h2 className="text-xl md:text-2xl font-sans font-bold text-slate-900 uppercase tracking-[0.2em] leading-tight max-w-4xl">
+                        <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-900 leading-tight max-w-4xl">
                           Tecnología de Cristal Líquido Disperso en Polímero (PDLC)
                         </h2>
                       </div>
@@ -536,7 +628,7 @@ export default function App() {
                           whileInView={{ opacity: 1, y: 0 }}
                           className="bg-white p-8 border border-slate-100 rounded-sm shadow-sm group hover:border-indigo-600 transition-all"
                         >
-                          <div className="text-4xl font-serif font-bold text-slate-900 mb-2 group-hover:text-indigo-900 transition-colors">-30%</div>
+                          <div className="text-4xl font-sans font-bold text-slate-900 mb-2 group-hover:text-indigo-900 transition-colors">-30%</div>
                           <div className="text-[10px] uppercase tracking-widest text-indigo-800 font-bold mb-2">Energía</div>
                           <p className="text-[11px] text-slate-500 font-light leading-relaxed">Ahorro garantizado en climatización HVAC.</p>
                         </motion.div>
@@ -548,7 +640,7 @@ export default function App() {
                           className="bg-indigo-950 p-8 rounded-sm shadow-xl text-white relative overflow-hidden group"
                         >
                           <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 rounded-full -mr-12 -mt-12 group-hover:scale-110 transition-transform" />
-                          <div className="text-4xl font-serif font-bold text-white mb-2">99%</div>
+                          <div className="text-4xl font-sans font-bold text-white mb-2">99%</div>
                           <div className="text-[10px] uppercase tracking-widest text-indigo-100 font-bold mb-2">Protección UV</div>
                           <p className="text-[11px] text-indigo-50 font-light leading-relaxed">Bloqueo total sin residuos plásticos.</p>
                         </motion.div>
@@ -584,7 +676,7 @@ export default function App() {
                 
                 <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
                   <div className="space-y-8">
-                    <h2 className="text-xl md:text-2xl font-sans font-bold text-slate-900 uppercase tracking-[0.2em] leading-tight">
+                    <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-900 leading-tight">
                       Lógica de Funcionamiento <br /> <span className="text-slate-500 italic font-light lowercase">Magic glass PDLC</span>
                     </h2>
                     <div className="space-y-12">
@@ -642,7 +734,7 @@ export default function App() {
                     {/* Left: Contact Info */}
                     <div className="space-y-12">
                       <div className="space-y-6">
-                        <h2 className="text-xl md:text-2xl font-sans font-bold text-slate-900 uppercase tracking-[0.2em]">Hablemos de tu Proyecto</h2>
+                        <h2 className="text-2xl md:text-3xl font-serif font-bold text-slate-900">Hablemos de tu Proyecto</h2>
                         <p className="text-slate-500 font-light text-[13px] md:text-[14px] leading-relaxed max-w-xl">
                           Nuestro equipo de expertos está listo para asesorarte en la integración de PDLC en tus espacios. 
                           Garantizamos una instalación profesional y un acabado impecable.
@@ -661,7 +753,10 @@ export default function App() {
                         </a>
                         <a href="mailto:leroyresidence@gmail.com" className="flex items-center p-6 bg-white hover:bg-slate-100 transition-colors rounded-sm space-x-4 border border-slate-100 group">
                           <Mail size={24} strokeWidth={1} />
-                          <span className="text-[10px] uppercase tracking-widest font-medium text-slate-700">Email</span>
+                          <div className="flex flex-col">
+                            <span className="text-[10px] uppercase tracking-widest font-medium text-slate-500 mb-0.5">Email</span>
+                            <span className="text-[11px] font-bold text-slate-900 lowercase">leroyresidence@gmail.com</span>
+                          </div>
                         </a>
                         <a href="tel:+56994443591" className="flex items-center p-6 bg-white hover:bg-slate-100 transition-colors rounded-sm space-x-4 border border-slate-100 group text-left">
                           <Phone size={24} strokeWidth={1} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -762,7 +857,24 @@ export default function App() {
 
             <footer className="py-12 border-t border-slate-100 text-center">
               <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-center">
-                <div className="text-sm font-sans tracking-[0.3em] uppercase font-bold text-slate-900">VIBB</div>
+                <div className="text-sm font-sans tracking-[0.3em] uppercase font-bold text-slate-900 flex items-center">
+                  <span>V</span>
+                  <span className="relative">
+                    I
+                    <span className="absolute -top-[0.22em] left-1/2 -translate-x-1/2 flex justify-center gap-[0.1em] min-w-max">
+                      <span className="w-[0.18em] h-[0.18em] bg-slate-900 rounded-full relative">
+                        <span className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white rounded-full opacity-90" />
+                      </span>
+                      <span className="w-[0.18em] h-[0.18em] bg-slate-900 rounded-full relative">
+                        <span className="absolute top-[15%] left-[15%] w-[30%] h-[30%] bg-white rounded-full opacity-90" />
+                      </span>
+                    </span>
+                  </span>
+                  <span>BB</span>
+                </div>
+                <div className="mt-4 md:mt-0 md:ml-8 text-[10px] tracking-[0.2em] font-medium text-slate-400 uppercase">
+                  © 2024 VIBB Magic Glass Solutions | <a href="mailto:leroyresidence@gmail.com" className="hover:text-indigo-900 transition-colors">leroyresidence@gmail.com</a>
+                </div>
               </div>
             </footer>
           </motion.div>
